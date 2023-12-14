@@ -1,0 +1,72 @@
+-- Create Staging Database
+
+CREATE DATABASE ProjectStagingDatabase;
+GO
+
+USE ProjectStagingDatabase;
+
+
+--create tables
+
+CREATE TABLE Staging_Country (
+    ID INT PRIMARY KEY,
+    CountryName VARCHAR(45)
+);
+
+
+CREATE TABLE Staging_Customer (
+    ID INT PRIMARY KEY,
+    CustomerName VARCHAR(200),
+    CountryID INT
+);
+
+
+
+
+CREATE TABLE Staging_Contact (
+    ID INT PRIMARY KEY,
+    FirstName VARCHAR(45),
+    LastName VARCHAR(45),
+    Address VARCHAR(100),
+    ZipCode VARCHAR(45),
+    City VARCHAR(45),
+    Email VARCHAR(45),
+    CustomerID INT,
+    CountryID INT
+);
+
+
+CREATE TABLE Staging_ContractType (
+    ID INT PRIMARY KEY,
+    Name VARCHAR(45)
+);
+
+
+CREATE TABLE Staging_Contract (
+    ID INT PRIMARY KEY,
+    StartDate DATE,
+    EndDate DATE,
+    Interval INT,
+    CustomerID INT,
+    ContactTypeID INT,
+    FixedPrice DECIMAL(6,3)
+
+);
+
+--this table is for the fixed prices table from customer database
+CREATE TABLE Prices (
+    idPrices INT PRIMARY KEY,
+    StartDate DATE,
+    EndDate DATE,
+    Price DECIMAL(6, 3) 
+);
+
+
+
+--this table is for the CSV file data
+CREATE TABLE Staging_FixedPrices (
+    ID INT PRIMARY KEY,
+    StartDate DATE,
+    EndDate DATE,
+    Price DECIMAL(6,3)
+);
